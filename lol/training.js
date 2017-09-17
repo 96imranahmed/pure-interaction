@@ -1,0 +1,23 @@
+
+///////////////////////////////////////////////////////////////////////////////
+// A default interactive interface for interactive calibration
+///////////////////////////////////////////////////////////////////////////////
+var xLabsTraining = {
+
+  onMouseUp : function() {
+
+  },
+
+  paint : function() {
+
+  },
+
+  setup : function() {
+
+  }
+
+};
+
+xLabsTraining.setup();
+
+

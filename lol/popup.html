@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title class='xLabs-extension'>xLabs Head/Eye/Gaze Tracker</title>
+ <style>
+  body{
+   margin:0;
+   padding:0;
+   background:#fff;
+   font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  #banner{
+   width:160px;
+  }
+  .inner{
+   padding:1em 0;
+   background:#f2f2f2;
+  }
+  .inner p, .inner label{
+    padding:0 0 0 25px;
+  }
+  p{
+   margin:1em 0 0 ;
+  }
+  form label{
+   display:block;
+  }
+  .disabled{
+   color:#777;
+  }
+
+  #status{
+   border:1px solid #ddd;
+   border-left:none;
+   border-right:none;
+   padding-top:1em;
+   padding-bottom:1em;
+  }
+  #buttons {
+   border:1px solid #ddd;
+   border-left:none;
+   border-right:none;
+   border-bottom:none;
+   padding-top:1em;
+  }
+  #buttons button{
+   margin-right:0.1em;
+  }
+  #buttons {
+   text-align:center;
+   padding-left:0;
+   padding-right:0;
+   margin-top:1em;
+  }
+ </style>
+</head>
+<body>
+
+  <!-- eyesdecide extension -->
+  <div class="xLabs-extension">
+    <div id="banner">
+     <img src="final_nogaze_small.png" />
+    </div>
+
+    <div class="inner">
+      <form name="mode-form" id="mode-form">
+        <label><input type="radio" name="mode" value="off" />Off</label>
+        <label><input type="radio" name="mode" value="head" />Head</label>
+        <label><input type="radio" name="mode" value="mouse" />Mouse</label>
+        <label><input type="radio" name="mode" value="learning" />Learning</label>
+        <label class="disabled"><input type="radio" name="mode" value="training" disabled />Page-defined</label>
+      </form>
+
+      <p id="status">Status: <strong class="status-value">Loading</strong></p>
+
+      <div id="buttonsContainer">
+      	<div id="buttons" class="buttons">
+          <button id="options">Options</button>
+          <button id="help">Help</button>
+      	</div>
+      </div>
+    </div>
+  </div> <!-- /xlabs extension -->
+
+  <script src="variables.js"></script>
+  <script src="util.js"></script>
+  <script src="popup.js"></script>
+  
+</body>
+</html>
