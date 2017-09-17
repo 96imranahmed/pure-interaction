@@ -27,6 +27,7 @@
 // script.type = 'text/javascript';
 // document.getElementsByTagName('head')[0].appendChild(script);
 
+var reaction = 'neutral'
 
 var findShowButton = function(post_node) {
     var stack = new Array()
@@ -247,11 +248,11 @@ var xLabsMouse = {
     var post_node = getPostNode(el)
 
     console.log(document)
-    console.log(document.reaction)
+    console.log(document.documentElement.getAttribute('reaction'))
 
-    if(post_node && document.reaction) {
-      if(document.reaction != 'neutral') {
-        postReaction(post_node, document.reaction)
+    if(post_node && document.documentElement.getAttribute('reaction')) {
+      if(document.documentElement.getAttribute('reaction') != 'neutral') {
+        postReaction(post_node, document.documentElement.getAttribute('reaction'))
       }
     }
 
