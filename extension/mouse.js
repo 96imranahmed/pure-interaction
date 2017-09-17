@@ -21,6 +21,106 @@
 //   to centre their head.
 //
 ///////////////////////////////////////////////////////////////////////////////
+
+// var script = document.createElement('script');
+// script.src = "http://code.jquery.com/jquery-2.2.1.min.js";
+// script.type = 'text/javascript';
+// document.getElementsByTagName('head')[0].appendChild(script);
+
+
+var findShowButton = function(post_node) {
+    var stack = new Array()
+    stack.push(post_node)
+
+    while(stack.length != 0) {
+        var top_node = stack.pop();
+
+        if(top_node.hasAttribute('id') && top_node.getAttribute('id').indexOf('comment') != -1) {
+            continue;
+        }
+
+        if(top_node.hasAttribute('data-accessibilityid') && (top_node.getAttribute('data-accessibilityid') === 'virtual_cursor_trigger')) {
+            top_node.click()
+
+            return;
+
+        }
+
+        for(var children in top_node.childNodes) {
+            var c_node = top_node.childNodes[children]
+            if(c_node && c_node instanceof Element) {
+                stack.push(top_node.childNodes[children])
+            }
+        }
+    }
+
+    return;
+}
+
+
+var findReactionBar = function(post_node) {
+    var stack = new Array()
+    stack.push(post_node)
+
+    
+    while(stack.length != 0) {
+        var top_node = stack.pop();
+
+        if(top_node.hasAttribute('id') && top_node.getAttribute('id').indexOf('comment') != -1) {
+            continue;
+        }
+
+        if(top_node.hasAttribute('aria-label') && (top_node.getAttribute('aria-label') === 'Reactions')) {
+            return top_node
+        }
+
+        for(var children in top_node.childNodes) {
+            var c_node = top_node.childNodes[children]
+            if(c_node && c_node instanceof Element) {
+                stack.push(top_node.childNodes[children])
+            }
+        }
+    }
+
+    return
+}
+
+var postReaction = function(post_node, reaction) {
+
+    findShowButton(post_node)
+
+    setTimeout(function(){
+
+    var reactionbar = findReactionBar(post_node)
+    for(var children in reactionbar.childNodes) {
+        var c_node = reactionbar.childNodes[children]
+        if(c_node instanceof Element) {
+            if(c_node.hasAttribute('aria-label') && c_node.getAttribute('aria-label') === reaction) {
+                c_node.click()
+                return
+            }
+        }
+    }
+    return}, 100)
+    
+}
+
+var getPostNode = function(dom_node) {
+
+    if(!dom_node) {
+      return null
+    }
+    
+    while(!dom_node.classList.contains('fbUserPost')) {
+      dom_node = dom_node.parentElement
+      if(!dom_node) {
+        return null
+      }
+    }
+
+    return dom_node
+}
+
 var xLabsMouse = {
 
   TIMEOUT_BACK : 1500,
@@ -143,6 +243,15 @@ var xLabsMouse = {
 
     // Get nearest element
     var el = document.elementFromPoint( xLabsMouse.documentXY.x, xLabsMouse.documentXY.y );
+
+    var post_node = getPostNode(el)
+
+    if(post_node) {
+      postReaction(post_node, 'Like')
+    }
+
+    el = document.elementFromPoint( xLabsMouse.documentXY.x, xLabsMouse.documentXY.y );
+
     if( el ) {
       ctx.strokeStyle = "rgba(0, 0, 255, "+0.5+")";
       ctx.lineWidth = 2;
