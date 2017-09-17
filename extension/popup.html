@@ -1,50 +1,90 @@
-<!doctype html>
-<!--
- This page is shown when the extension button is clicked, because the
- "browser_action" field in manifest.json contains the "default_popup" key with
- value "popup.html".
- -->
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Getting Started Extension's Popup</title>
-    <style type="text/css">
-      body {
-        margin: 10px;
-        white-space: nowrap;
-      }
+<head>
+ <title class='xLabs-extension'>xLabs Head/Eye/Gaze Tracker</title>
+ <style>
+  body{
+   margin:0;
+   padding:0;
+   background:#fff;
+   font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  #banner{
+   width:160px;
+  }
+  .inner{
+   padding:1em 0;
+   background:#f2f2f2;
+  }
+  .inner p, .inner label{
+    padding:0 0 0 25px;
+  }
+  p{
+   margin:1em 0 0 ;
+  }
+  form label{
+   display:block;
+  }
+  .disabled{
+   color:#777;
+  }
 
-      h1 {
-        font-size: 15px;
-      }
+  #status{
+   border:1px solid #ddd;
+   border-left:none;
+   border-right:none;
+   padding-top:1em;
+   padding-bottom:1em;
+  }
+  #buttons {
+   border:1px solid #ddd;
+   border-left:none;
+   border-right:none;
+   border-bottom:none;
+   padding-top:1em;
+  }
+  #buttons button{
+   margin-right:0.1em;
+  }
+  #buttons {
+   text-align:center;
+   padding-left:0;
+   padding-right:0;
+   margin-top:1em;
+  }
+ </style>
+</head>
+<body>
 
-      #container {
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
-      }
-    </style>
-
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
-    -->
-    <script src="popup.js"></script>
-    <script src="./xlabs.js"></script>
-  </head>
-
-  <body>
-    <h1>Background Color Changer</h1>
-    <div id="container">
-      <span>Choose a color</span>
-      <select id="dropdown">
-        <option selected disabled hidden value=''></option>
-        <option value="white">White</option>
-        <option value="pink">Pink</option>
-        <option value="green">Green</option>
-        <option value="yellow">Yellow</option>
-      </select>
+  <!-- eyesdecide extension -->
+  <div class="xLabs-extension">
+    <div id="banner">
+     <img src="final_nogaze_small.png" />
     </div>
-  </body>
+
+    <div class="inner">
+      <form name="mode-form" id="mode-form">
+        <label><input type="radio" name="mode" value="off" />Off</label>
+        <label><input type="radio" name="mode" value="head" />Head</label>
+        <label><input type="radio" name="mode" value="mouse" />Mouse</label>
+        <label><input type="radio" name="mode" value="learning" />Learning</label>
+        <label class="disabled"><input type="radio" name="mode" value="training" disabled />Page-defined</label>
+      </form>
+
+      <p id="status">Status: <strong class="status-value">Loading</strong></p>
+
+      <div id="buttonsContainer">
+      	<div id="buttons" class="buttons">
+          <button id="options">Options</button>
+          <button id="help">Help</button>
+      	</div>
+      </div>
+    </div>
+  </div> <!-- /xlabs extension -->
+
+  <script src="variables.js"></script>
+  <script src="util.js"></script>
+  <script src="popup.js"></script>
+  
+</body>
 </html>
