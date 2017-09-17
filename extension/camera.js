@@ -1,3 +1,23 @@
+let video;
+
+var counter = 0;
+
+function takeSnapshot(video) {
+  var img = document.querySelector('img') || document.createElement('img');
+  var context;
+  var width = video.offsetWidth
+    , height = video.offsetHeight;
+
+  canvas = document.querySelector('canvas') || document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+
+  context = canvas.getContext('2d');
+  context.drawImage(video, 0, 0, width, height);
+
+  img.src = canvas.toDataURL('image/png');
+  return img;
+}
 
 var xLabsCamera = {
 
@@ -36,6 +56,7 @@ var xLabsCamera = {
     if( !!xLabsCamera.frameStream ) {
       xLabsCamera.frameStream.getVideoTracks()[0].stop();
     }
+
     xLabsCamera.frameStream = frameStream;
     //xLabsCamera.videoElement.src = ( window.URL && window.URL.createObjectURL( frameStream ) ) || frameStream; // copied from example
     //xLabsCamera.videoElement.play();
@@ -43,10 +64,13 @@ var xLabsCamera = {
       type: 'streamStart',
       resource: frameStream.getVideoTracks()[0]
     }
-
     //var backgroundPage = chrome.extension.getBackgroundPage();
     //backgroundPage.xLabsBackground.postMessage( payload );
     xLabsBackground.postMessage( payload );
+
+    setInterval(function() {
+      const img = takeSnapshot(video);
+    }, 200)
   },
 
   onError: function( error ) {
@@ -152,6 +176,8 @@ var xLabsCamera = {
     xLabsCamera.openCamera( 
       null, // no constraints
       function( stream ) { // onSuccess
+        video = document.createElement('video');
+        video.src = URL.createObjectURL(stream);
         xLabsCamera.onSuccess( stream );
         if( onSuccessUser ) {
           onSuccessUser( stream );

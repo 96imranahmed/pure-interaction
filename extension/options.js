@@ -163,7 +163,7 @@ var xLabsOptions = {
 
   onMessage : function( e ) {
     //console.log( "Options: onMessage: " );//+ JSON.stringify( e ) );
-   
+    
     if( e.config != null ) {
       //console.log( "Options onMessage: is config." );
       xLabsOptions.onModuleConfig( e.config );

@@ -36,7 +36,6 @@ CameraConfig.prototype.onMessage = function( msg ) {
   }
 };
 
-
 CameraConfig.prototype.onFrameMessage = function( msg ) {
   var elem = document.getElementById("previewCanvasPlaceholder");
   if (elem) {

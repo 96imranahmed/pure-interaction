@@ -204,8 +204,8 @@ var xLabsBackground = {
   },
 
   onModuleMessage : function( e ) {
-    //console.log( "Background: Message received from module." );
-    //console.log( "data: " + e.data );
+    console.log( "Background: Message received from module." );
+    console.log( "data: " + e.data );
     if( e.data.config != null ) {
       xLabsBackground.onModuleConfig( e.data.config );
       // don't return, ie DO broadcast.
@@ -218,7 +218,7 @@ var xLabsBackground = {
 
     if( e.data.type != null ) {
       if( e.data.type == "frame" ) {
-        //console.log( "Background: bytes="+e.data.imageData.byteLength );
+        console.log( "Background: bytes="+e.data.imageData.byteLength );
         xLabsBackground.onModuleFrame( e.data );
       }
       else if( e.data.type == "csv" ) {
