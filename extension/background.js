@@ -19,27 +19,7 @@ xLabsUtil.getUserInfo( function(userInfo) {
 // end Mixpanel
 ///////////////////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////////////////
-// Google analytics
-///////////////////////////////////////////////////////////////////////////////
 
-// var _gaq = _gaq || [];
-// _gaq.push(['_setAccount', xLabsVariables.GA_ID]);
-
-// function loadGa() {
-//   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-//   //ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-//   ga.src = 'https://ssl.google-analytics.com/ga.js';
-//   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-
-//   // window.alert("google-analytics loaded");
-// }
-
-// setTimeout(loadGa, 0);
-
-///////////////////////////////////////////////////////////////////////////////
-// end Google analytics
-///////////////////////////////////////////////////////////////////////////////
 
 var xLabsBackground = {
 
