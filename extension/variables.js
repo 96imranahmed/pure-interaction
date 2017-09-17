@@ -15,7 +15,7 @@ var xLabsVariables = {
   URL_OPTIONS : 'options.html',
   URL_HELP : 'http://www.xlabsgaze.com/help',
 
-  GA_ID : 'UA-53017531-2'
+  // GA_ID : 'UA-53017531-2'
 
 }
 

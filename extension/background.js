@@ -23,19 +23,19 @@ xLabsUtil.getUserInfo( function(userInfo) {
 // Google analytics
 ///////////////////////////////////////////////////////////////////////////////
 
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', xLabsVariables.GA_ID]);
+// var _gaq = _gaq || [];
+// _gaq.push(['_setAccount', xLabsVariables.GA_ID]);
 
-function loadGa() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  //ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-  ga.src = 'https://ssl.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+// function loadGa() {
+//   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+//   //ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+//   ga.src = 'https://ssl.google-analytics.com/ga.js';
+//   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 
-  // window.alert("google-analytics loaded");
-}
+//   // window.alert("google-analytics loaded");
+// }
 
-setTimeout(loadGa, 0);
+// setTimeout(loadGa, 0);
 
 ///////////////////////////////////////////////////////////////////////////////
 // end Google analytics
@@ -592,7 +592,7 @@ var xLabsBackground = {
   },
 
   sendAnalytics : function( event, action, properties ) {
-    _gaq.push(['_trackEvent', event, action]);
+    // _gaq.push(['_trackEvent', event, action]);
     if( typeof(properties) == "undefined" ) {
       properties = {}
     }
@@ -601,7 +601,7 @@ var xLabsBackground = {
   },
 
   sendAnalyticsTrackPageView : function( page_name ) {
-    _gaq.push(['_trackPageview']);
+    // _gaq.push(['_trackPageview']);
     mixpanel.track( "page_view_" + page_name );
   },
 

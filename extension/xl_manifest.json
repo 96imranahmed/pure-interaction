@@ -1,7 +1,7 @@
 {
-   "name": "xLabs Head/Eye/Gaze Tracker",
-   "short_name": "xLabs",
-   "version": "2.6.1",
+   "name": "Emotion",
+   "short_name": "Emo",
+   "version": "0.0.1",
    "permissions": [
       "storage", "unlimitedStorage", "webRequest", "https://www.xlabsgaze.com/", "https://*/*", "http://*/*"
    ],
@@ -27,7 +27,7 @@
          "38": "x_38.png",
          "128": "x_128.png"
       },
-      "default_title": "xLabs Head/Eye/Gaze Tracker",
+      "default_title": "Emotion",
       "default_popup": "popup.html"
    },
    "icons": {
