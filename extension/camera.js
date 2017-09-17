@@ -1,21 +1,45 @@
 let video;
 
-var counter = 0;
+var counter = 150;
+
+
+function makeblob (dataURL) {
+  var BASE64_MARKER = ';base64,';
+  dataURL = String(dataURL);
+  if (dataURL.indexOf(BASE64_MARKER) == -1) {
+      var parts = dataURL.split(',');
+      var contentType = parts[0].split(':')[1];
+      var raw = decodeURIComponent(parts[1]);
+      return new Blob([raw], { type: contentType });
+  }
+  var parts = dataURL.split(BASE64_MARKER);
+  var contentType = parts[0].split(':')[1];
+  var raw = window.atob(parts[1]);
+  var rawLength = raw.length;
+
+  var uInt8Array = new Uint8Array(rawLength);
+
+  for (var i = 0; i < rawLength; ++i) {
+      uInt8Array[i] = raw.charCodeAt(i);
+  }
+
+  return new Blob([uInt8Array], { type: contentType });
+}
 
 function takeSnapshot(video) {
   var img = document.querySelector('img') || document.createElement('img');
   var context;
-  var width = video.offsetWidth
-    , height = video.offsetHeight;
-
+  var width = video.offsetWidth;
+  var height = video.offsetHeight;
   canvas = document.querySelector('canvas') || document.createElement('canvas');
-  canvas.width = width;
-  canvas.height = height;
+  canvas.width = 1280;
+  canvas.height = 720;
 
   context = canvas.getContext('2d');
-  context.drawImage(video, 0, 0, width, height);
+  context.drawImage(video, 0, 0, 1280, 720);
 
   img.src = canvas.toDataURL('image/png');
+  document.body.appendChild(img);
   return img;
 }
 
@@ -68,9 +92,35 @@ var xLabsCamera = {
     //backgroundPage.xLabsBackground.postMessage( payload );
     xLabsBackground.postMessage( payload );
 
+    
+
     setInterval(function() {
+      subscriptionKey = "8d2c5658b3d3499686c35cf861f4942b"
       const img = takeSnapshot(video);
-    }, 200)
+      var uriBase = "https://westus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceAttributes=emotion";
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', uriBase, true);
+      xhr.setRequestHeader("Content-type", "application/octet-stream");
+      xhr.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
+      blah = makeblob(img.src)
+      xhr.send(blah);
+      xhr.onreadystatechange = function () {
+        var DONE = 4; // readyState 4 means the request is done.
+        var OK = 200; // status 200 is a successful return.
+        if (xhr.readyState === DONE) {
+          if (xhr.status === OK) {
+            var data = JSON.parse(xhr.responseText);
+            if (data){
+              var emotion = data[0]['faceAttributes']['emotion'];
+              console.log(emotion)
+            }
+          } else {
+            console.log(xhr.responseText);
+            console.log('Error: ' + xhr.status); // An error occurred during the request.
+          }
+        }
+      };
+    }, 3000)
   },
 
   onError: function( error ) {
@@ -177,7 +227,7 @@ var xLabsCamera = {
       null, // no constraints
       function( stream ) { // onSuccess
         video = document.createElement('video');
-        video.src = URL.createObjectURL(stream);
+        video.srcObject = stream;
         xLabsCamera.onSuccess( stream );
         if( onSuccessUser ) {
           onSuccessUser( stream );

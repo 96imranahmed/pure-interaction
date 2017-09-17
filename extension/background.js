@@ -204,8 +204,8 @@ var xLabsBackground = {
   },
 
   onModuleMessage : function( e ) {
-    console.log( "Background: Message received from module." );
-    console.log( "data: " + e.data );
+    // console.log( "Background: Message received from module." );
+    // console.log( "data: " + e.data );
     if( e.data.config != null ) {
       xLabsBackground.onModuleConfig( e.data.config );
       // don't return, ie DO broadcast.

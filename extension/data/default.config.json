@@ -104,8 +104,8 @@
         "stream": {
             "enabled": 0,
             "preview": 0,
-            "width": 640,
-            "height": 480,
+            "width": 1280,
+            "height": 720,
             "format": "BGRA", // DEFAULT, YV12, I420, BGRA,
             "frameRateThrottler": {
                 "enabled": 1,
