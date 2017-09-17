@@ -1,0 +1,41 @@
+{
+   "name": "EyesDecide",
+   "short_name": "EyesDecide",
+   "version": "2.6.1",
+   "permissions": [
+      "storage", "unlimitedStorage", "webRequest", "https://www.xlabsgaze.com/", "https://*/*", "http://*/*"
+   ],
+   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
+   "content_scripts": [ {
+      "js": [ "run_at_document_start.js" ],
+      "matches": [ "file://*/*", "https://*/*", "http://*/*" ],
+      "run_at": "document_start"
+   }, {
+      "js": [ "util.js", "coord.js", "timer.js", "errors.js", "head.js", "mouse.js", "learning.js", "camera.js", "preview.js", "calib.js", "truth.js", "training.js", "content_script.js" ],
+      "matches": [ "file://*/*", "https://*/*", "http://*/*" ]
+   } ],
+   "background": {
+      "persistent": true,
+      "page" :"ed_background.html"
+   },
+   "incognito":"split",
+   "manifest_version": 2,
+   "browser_action": {
+      "default_icon": {
+         "16": "ed_16.png",
+         "19": "ed_19.png",
+         "38": "ed_38.png",
+         "128": "ed_128.png"
+      },
+      "default_title": "EyesDecide.com Browser Extension",
+      "default_popup": "ed_popup.html"
+   },
+   "icons": {
+      "16": "ed_16.png",
+      "19": "ed_19.png",
+      "38": "ed_38.png",
+      "128": "ed_128.png"
+   },
+   "options_page": "ed_options.html",
+   "web_accessible_resources": ["no_frame.jpg","options.css","xlabs_white.png","env_bad_back.png","env_bad_dark.png","env_bad_side.png","env_ok_day.png","env_ok_night.png","gaze.jpg","extension_button.png"]
+}

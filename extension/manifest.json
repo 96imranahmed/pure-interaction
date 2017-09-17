@@ -10,7 +10,9 @@
   },
   "permissions": [
     "activeTab",
-    "storage",
+    "storage"
+  ],
+  "optional_permissions": [
     "videoCapture"
   ]
 }

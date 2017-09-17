@@ -1,0 +1,69 @@
+{
+  "files": {
+    "libc.so.150657dc": {
+      "x86-64": {
+        "url": "lib64/libc.so.150657dc"
+      }
+    },
+    "libpng16.so.16": {
+      "x86-64": {
+        "url": "lib64/libpng16.so.16"
+      }
+    },
+    "main.nexe": {
+      "x86-64": {
+        "url": "realtime.nexe"
+      }
+    },
+    "libstdc++.so.6": {
+      "x86-64": {
+        "url": "lib64/libstdc++.so.6"
+      }
+    },
+    "libpthread.so.150657dc": {
+      "x86-64": {
+        "url": "lib64/libpthread.so.150657dc"
+      }
+    },
+    "libppapi_cpp.so": {
+      "x86-64": {
+        "url": "lib64/libppapi_cpp.so"
+      }
+    },
+    "librt.so.150657dc": {
+      "x86-64": {
+        "url": "lib64/librt.so.150657dc"
+      }
+    },
+    "libz.so.1": {
+      "x86-64": {
+        "url": "lib64/libz.so.1"
+      }
+    },
+    "libgcc_s.so.1": {
+      "x86-64": {
+        "url": "lib64/libgcc_s.so.1"
+      }
+    },
+    "libm.so.150657dc": {
+      "x86-64": {
+        "url": "lib64/libm.so.150657dc"
+      }
+    },
+    "libtiff.so.5": {
+      "x86-64": {
+        "url": "lib64/libtiff.so.5"
+      }
+    },
+    "libnacl_io.so": {
+      "x86-64": {
+        "url": "lib64/libnacl_io.so"
+      }
+    }
+  },
+  "program": {
+    "x86-64": {
+      "url": "lib64/runnable-ld.so"
+    }
+  }
+}

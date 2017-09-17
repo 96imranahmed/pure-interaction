@@ -1,0 +1,118 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  padding:0;
+  -webkit-font-smoothing: antialiased;
+  font-weight: normal;
+  background: #ffffff;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size:100%;
+}
+
+#banner{
+ border-bottom:1px solid #ddd;
+ height:85px;
+}
+#banner .inner{
+   width: 960px;
+  margin:0 auto;
+}
+#banner img{
+ float:left;
+ margin:0 2em 0 0;
+}
+#banner h1{
+ float:left;
+ color:#777;
+ font-weight:normal;
+ font-size:2.4em;
+ display:inline-block;
+ margin:15px 0 0 0;
+}
+
+.tabRadio {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.tabs {
+  width: 960px;
+  float: none;
+  list-style: none;
+  position: relative;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.tabLi{
+  float: left;
+}
+
+
+.tabsLabel {
+  display: block;
+  padding: 10px 20px 10px 10px;
+  border-radius: 2px 2px 0 0;
+  color: #999999;
+  font-size: 1.2em;
+  font-weight: normal;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: rgba(255,255,255,0.2);
+  cursor: pointer;
+  position: relative;
+}
+
+.controlLabel {
+  font-weight: bold;
+}
+
+.tabsLabel:hover {
+  color:#555;
+}
+       
+[id^=tab]:checked + label {
+  color: #000;
+  top: 0;
+}
+       
+[id^=tab]:checked ~ [id^=tab-content] {
+  display: block;
+}
+.tab-content{
+  z-index: 2;
+  display: none;
+  
+  padding: 10px;
+  color: #555555;
+  position: absolute;
+  top: 2em;
+  left:0;
+  line-height:1.4;
+  box-sizing: border-box;
+}
+
+.img-align-right{
+ float:right;
+ max-width:60%;
+ height:auto;
+ margin:1em 0 1em 1em;
+}
+.cfix{
+ overflow:auto;
+}
+pre {
+  outline: 1px solid #ccc; 
+  padding: 5px; 
+  margin: 5px; 
+}
+pre#config{
+ font-family:'Courier New', Courier, monospace; 
+ font-size: 0.9em;
+}
+.string { color: green; }
+.number { color: darkorange; }
+.boolean { color: blue; }
+.null { color: magenta; }
+.key { color: red; }
+

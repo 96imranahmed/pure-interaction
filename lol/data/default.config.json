@@ -1,0 +1,364 @@
+{
+    "state" : {
+      "timestamp" : 0,
+      "frameRate" : {
+        "camera" : 0,
+        "pipeline" : 0
+      },
+      "calibration" : {
+        "confidence" : ""
+      },
+      "trackingSuspended" : 0,
+      "head" : {
+        "x" : 0,
+        "y" : 0,
+        "z" : 0,
+        "roll" : 0,
+        "pitch" : 0,
+        "yaw" : 0,
+        "features" : ""
+      },
+      "gaze" : {
+        "vector" : {
+          "x" : 0,
+          "y" : 0
+        },
+        "measured" : {
+          "x" : 0,
+          "y" : 0
+        },
+        "estimate" : {
+          "x" : 0,
+          "y" : 0
+        }
+      },
+      "image": {
+        "size": {
+          "width"  : 0,
+          "height" : 0
+        }
+      }
+    },
+
+    "browser" : {
+      "screen" : {
+        "x" : 0,
+        "y" : 0,
+        "width" : 0,
+        "height" : 0,
+        "dpi" : 100
+      },
+      "canvas" : {
+        "intervalFocus" : 50, 
+        "intervalBlur" : 200,
+        "paintHeadPose" : 0, 
+        "paintLearning" : 0,
+        "enabled" : 0,
+        "captureMouse" : 0,
+        "captureKeyboard" : 0
+      },
+      "mouse" : {
+        "absScreenCoordinates" : 0,
+        "event" : {
+          "move" : {
+            "xScreen": 0,
+            "yScreen": 0,
+            "t": 0
+          },
+          "down" : {
+            "xScreen": 0,
+            "yScreen": 0,
+            "t": 0
+          },
+          "up" : {
+            "xScreen": 0,
+            "yScreen": 0,
+            "t": 0
+          }
+        }
+      },
+      "keyboard" : {
+        "event" : {
+          "keyCode": 0,
+          "t": 0
+        }
+      },
+      "document" : {
+        "offset" : {
+          "ready": 0,
+          "x" : 0,
+          "y" : 0
+        }
+      }
+    },
+
+    "system" : {
+      "persistentConfigPath" : "/mnt/persistent/persistent.config.json", // "trasient.config.json", "/mnt/persistent/persistent.config.json",
+      "mode" : "off",
+      "stop": 0,
+      "pushConfigIntervalMsec": 60,
+      "challenge": 0
+    },
+
+    "frame": {
+        "stream": {
+            "enabled": 0,
+            "preview": 0,
+            "width": 640,
+            "height": 480,
+            "format": "BGRA", // DEFAULT, YV12, I420, BGRA,
+            "frameRateThrottler": {
+                "enabled": 1,
+                "targetFps": 20
+            },
+            "filters": {
+                "whiteNoise": {
+                    "enabled": 0
+                },
+                "randomDeform": {
+                    "enabled": 0
+                }
+            }
+
+        }
+    },
+
+    "http": {
+        "enabled": 1,
+        "staticDirectory": "./www",
+        "host": "127.0.0.1",
+        "port": "8082",
+        "threads": 1,
+        "frame" : {
+            "default" : "./www/no_frame.jpg",
+            "delay" : 50
+        }
+    },
+
+    "truth": {
+        "enabled": 0,
+        "file": "truth.csv", // "truth.csv", "/mnt/persistent/truth.csv", // no filter
+        "persist1": 3000,  // After 3 secs they are serialized
+        "persist2": 2500, // youngest serialized are 2 seconds old
+        "interval": 50,
+        "mouse": 0,
+        "x": 500,
+        "y": 500
+    },
+
+    "watch": {
+        "enabled": 0,
+        "file": "watch.csv", // "watch.csv", "/mnt/persistent/watch.csv", // filtered on truth
+        "persist1": 2000, // Looking for matching in range 500-1000 msec old.
+        "persist2": 500, // oldest retained is 500.
+        "persistThreshold": 500,   // how distant it can be and still allow a match (ie be persisted)
+        "temp": {
+            "enabled": 0
+        }
+    },
+
+    "pipeline": {
+        "packetQueue": {
+            "length": 1
+        },
+        "tracking": {
+            "enabled": 1
+        },
+        "pinpoint": {
+            "enabled": 1
+        },
+        "validation": {
+            "enabled": 1
+        }
+    },
+
+    "calibration": {
+        "onStartup": 0,
+        "batch": 0, // 0 is not, 1 is yes
+        "status": 0, // 0 is bad, 1 is good
+        "clear": 0,
+        "active": "",
+        "completed": "",
+        "request": "",  // set to something (anything) to trigger a calibration immediately
+        "intervalRequest": 0,  // set to 1 to activate requests at intervals
+        "interval": 10000,   // how often it will calibrate-request
+        "temp": {
+          "batch": 0, // 0 is not, 1 is yes
+          "status": 0, // 0 is bad, 1 is good
+          "active": "",
+          "completed": "",
+          "request": ""  // set to something (anything) to trigger a calibration immediately
+        }
+    },
+
+    "validation": {
+        "lastFrameTimestamp": "0",
+        "valid": "0",
+        "errors": "",  
+        "facePosition": ""
+    },
+
+    "algorithm": {
+        "calib": {
+            "mode": "simplePoly", // "compoundPoly", "simplePoly", "fixedHead"
+            
+            // The following are all for mode 'compoundPoly'
+            "ignoreHeadRoll": 1,
+            "truthCsvHeader": "t1,t2,xs,ys",
+            "downSampleSize": 1000, // number of calibration samples is kept below this using uniform sampling
+            "gazeAccuracyByRobustnessEnabled": 1,
+            "numPerturbedCalib": 3,
+            "polyDegree": 3,
+            "polyTerms": "data/step_reduce_terms.txt",
+            "truthBuffer": {
+                "beforeMsec": 200, //25,
+                "afterMsec": 0 //25
+            },
+            "reduceBlockMode": "none", // options: "none", "median"
+            "rejectOutlier": {
+                "enabled": 0,
+                "numItr": 3,
+                "minCovDeterminant": {  // Mcd -- Minimum Covariance Determinant, give fraction of inliers, get a cluster as tight as possible.
+                    "numTrials": 3,  // Since the initial set of inliers is random, we may need to try a few times. 
+                    "inlierFraction": "0.9"  // Fraction of samples that are considered as inliers
+                },
+                "fitGaussianInlierFraction": "0.99" // zero means it's not active, hence the inliers from Mcd is used
+            },
+
+            "selectNumTerms": {
+                "mode": "FIXED", //options: FIXED, AUTO
+                "fixed": {
+                    "numTerms": 168  // 40 //30 //168
+                },
+                "auto": {
+                    "minNumTerms": 10,
+                    "maxNumTerms": 168,
+                    "alpha": "0.35"
+                }
+            },
+            "minNumSamplesPerTerm": "5" // if 10 samples then max number of terms is 10/minNumSamplesPerTerm
+        },
+        "faceDetector": {
+            "useLbp": 1,
+            "cascadeFile": {
+                "harr": "data/haarcascade_frontalface_alt2.xml",
+                "lbp": "data/lbpcascade_frontalface.xml"
+            }
+        },
+        "asm": {
+            "maxNumIters": 2,
+            "maxMovementPixels": 10
+        },
+        "canthi": {
+            "classifier": {
+                "descrSize": "1.6",
+                "keyPointOffset": {
+                    "x": 0,
+                    "y": 0
+                },
+                "dataRangeFile": "data/training_data.range",
+                "modelFile": "data/training_data.linear_svm_model"
+            },
+            "useCanthiDetector": 1,
+            "useRobustDetector": 0,
+            "mode": "canthi-detector" // possible values are: canthi-detector, asm
+        },
+        "statePostProcessing": {
+            //"smoothGazeAlpha": "0.5"
+            "gazeKf" : {
+                "processNoiseStddevPerMsec" : "0.25",
+                "measurementNoiseStddev": "30" //"30"
+            }
+        },
+        "validation": {
+            "headCentreDistanceThreshold": 0.7, 
+            "faceImageSizePixels": {
+                "width" : 120, //240 // determines resolution at which image quality is vetted
+                "height": 160  //320 // determines resolution at which image quality is vetted
+            },
+            "minFaceSizePixels": {
+                "width" : 100, // prevents extreme angles and low resolution due to physical distance
+                "height":  90  // prevents extreme angles and low resolution due to physical distance
+            },
+
+            "interRegionMeanThreshold": "0.1",
+            "regions": "Eye[L],Eye[R],Face",
+
+            "rectEye[L]": "0.5,0.1,0.5,0.3",
+            "thresholdMassLoEye[L]": "0.4",
+            "thresholdMassHiEye[L]": "0.1",
+            "thresholdIntensityLoEye[L]": "0.15",
+            "thresholdIntensityHiEye[L]": "0.75",
+
+            "rectEye[R]": "0,0.1,0.5,0.3",
+            "thresholdMassLoEye[R]": "0.4",
+            "thresholdMassHiEye[R]": "0.4",
+            "thresholdIntensityLoEye[R]": "0.15",
+            "thresholdIntensityHiEye[R]": "0.75",
+
+            "rectFace": "0,0.05,1,0.9",
+            "thresholdMassLoFace": "0.4",
+            "thresholdMassHiFace": "0.4",
+            "thresholdIntensityLoFace": "0.15",
+            "thresholdIntensityHiFace": "0.75"
+        }
+    },
+
+    "mouseEmulator": {
+        "enabled": 0,
+        "initialisationStatus": "uninitialised",
+        "ready": 0,
+        "sensitivity": {
+            "x": 1800,
+            "y": 1800
+        },
+        "adaptive": {
+            "slowDownFraction": 0.2,
+            "bboxMin": 100,
+            "bboxMax": 600,
+            "alphaMin": "0.0",
+            "alphaMax": "1.0",
+            "alpha": "1.0" // set by backend
+        },
+        "cursor": { // set by backend
+            "x": 0,
+            "y": 0
+        }
+    },
+
+    "gaze": {
+        "temp": {
+            "id":"",
+            "enabled": 0
+        }
+    },
+    "error": {
+        "temp": {
+            "id":"",
+            "enabled": 0
+        }
+    },
+    "click": {
+        "temp": {
+            "id":"",
+            "enabled": 0
+        }
+    },
+    "scroll": {
+        "temp": {
+            "id":"",
+            "enabled": 0
+        }
+    },
+    "debug" : {
+      "preview" : {
+        "enabled" : 0,
+        "targetFps" : 100
+      }
+    }
+
+}
+
+
+
+

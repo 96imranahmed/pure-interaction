@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" type="text/css" href="options.css" media="screen" />
+ <title class='xLabs-extension'>xLabs Head/Eye/Gaze Tracker [Options]</title>
+</head>
+<body>
+
+ <!-- xLabs extension -->
+  <div id="banner">
+    <div class="inner">
+      <img alt="xLabs" src="final_nogaze_small.png" />
+      <h1 >Webcam Head, Eye &amp; Gaze Tracker</h1>
+    </div>
+  </div>
+  <ul class="tabs">
+   <li class="tabLi">
+    <input type="radio" class="tabRadio" name="tabs" id="tab1">
+    <label class="tabsLabel" for="tab1">About</label>
+    <div id="tab-content1" class="tab-content animated fadeIn">
+
+  <div id="about">
+  <div id="about">
+   <h2>Important</h2>
+   <p style="background:#ffe0e0;padding:6px;"><strong>xLabs does not work on multi-screen systems. Detach additional screens.</strong></p>
+   <p style="background:#ffe0e0;padding:6px;"><strong>If xLabs runs slowly on your computer, try disabling CPU power-saving, or plugging into mains power.</strong></p>
+   <p style="background:#e0ffe0;padding:6px;"><strong>Make sure you are sitting at a desk, facing the window in daytime, or in a brightly-lit environment.</strong></p>
+   <div id="attention"
+  style="text-align:center;background:#FFAAAA;padding:10px;color:#252525;font-size:2.0em;border-radius:5px;">Click <strong>"Allow"</strong> above, to enable camera.</div>
+
+   <h2>About this software</h2>
+   <h4>Thank you for installing xLabs' head, eye and gaze tracking system.</h4>
+   <img src="gaze.jpg" class="img-align-right"/>
+   <p>xLabs' revolutionary software enables continuous, realtime tracking of your head, face-features, eyes, and gaze without restricting natural movement or using expensive additional hardware. Only your webcam is needed.</p>
+   <p>The system can interact with webpages, enabling gaze-sensitive web browsing and allowing you to participate in online usability testing. Head tracking enables you to browse the web without touching the computer, play games, and more. Check out some of our <a href="http://www.xlabsgaze.com/demo" alt="www.xlabsgaze.com">demos</a> and <a href="http://www.xlabsgaze.com/showcase" alt="www.xlabsgaze.com/showcase">showcase apps</a> to see what it can do!</p>
+   <p>All processing is done on your own computer, so we don't need to send video anywhere. This ensures your images stay private. The system only works when you allow it. You can easily remove this extension at any time.</p>
+   <p>This software was created by <a href="http://www.xlabsgaze.com" alt="www.xlabsgaze.com">xLabs Pty. Ltd.</a> of Melbourne, Australia. For help and more info, have a look at our website, <a href="http://www.xlabsgaze.com" alt="www.xlabsgaze.com">www.xlabsgaze.com</a>.</p>
+   <p id="version"></p>
+  </div>
+
+    </div>
+   </li>
+
+   <li class="tabLi">
+    <input type="radio" class="tabRadio" name="tabs" id="tab3">
+    <label class="tabsLabel" for="tab3">Camera</label>
+    <div id="tab-content3" class="tab-content animated fadeIn">
+
+  <div id="camera-div">
+   <div id="camera-toggle">
+    <div style="width: 35%; display:inline-block; padding-right: 0.5%;">
+       <h2>Camera</h2>
+      <form id="camera-form" name="camera-form" method="" action="" >
+       <!-- this form should contain all the properties we might need to set on the camera to make it work properly -->
+       <!--<label class="controlLabel" for="device">Camera selection</label>-->
+       <p>To change the camera used, use the relevant Chrome settings</a>. We will use the default Chrome camera.</p>
+       <p>
+        <label class="controlLabel" >Resolution&nbsp;</label>
+        <select id="resolution" style="font-size:1.1em;" >  
+         <option value="640x480">640 x 480 *</option>
+         <option value="800x600">800 x 600 +</option>
+         <option value="1024x600">1024 x 600</option>
+         <option value="1024x768">1024 x 768</option>
+         <option value="1280x720">1280 x 720</option>
+         <option value="1280x800">1280 x 800</option>
+         <option value="1280x1024">1280 x 1024</option>
+         <option value="1920x1080">1920 x 1080</option>
+        </select>
+       </p>
+       <p><input id="camera-apply" name="camera-apply" type="button" value="Save Changes" style="font-size:1.0em; padding:6px;"/></p>
+       <p id="resolution-info">
+       <br>
+        * Recommended for most cameras.<br>
+        + Recommended for HD cameras.<br>
+       <br>
+       Note: In general, we recommend the lowest resolution that gives a good quality, undistorted picture. Some cameras may suffer reduced framerate at higher resolutions. Your camera might only support some of these resolutions.</p>
+      </form>
+    </div>
+    <div style="width:60%;float:right; padding-top: 40px;"> 
+      <h3 id="previewCanvasPlaceholder" style="display:block;">Camera is starting... please wait.</h3>
+      <canvas id="previewCanvas" style="border:1px solid #000000; width:100%;"></canvas>
+    </div>
+   </div>
+  </div>
+
+    </div>
+   </li>
+
+   <li class="tabLi">
+    <input type="radio" class="tabRadio" name="tabs" id="tab4">
+    <label class="tabsLabel" for="tab4">Config</label>
+    <div id="tab-content4" class="tab-content animated fadeIn">
+
+  <div id="config-div">
+   <h2>Configuration</h2>
+   <p>For developers, this tab shows the current state of the system in the JSON format defined by our API. This can be helpful while developing web pages that use our software. You can also manually edit the configuration here and observe the effects. Not all properties are user-editable. Note that use of this feature may cause unexpected behaviour.</p>
+   <p>Developers can <a href="http://www.xlabsgaze.com/download" alt="www.xlabsgaze.com/download">register on our website</a> to download a special browser extension that accepts config change commands from any web page, including local files. The free, public extension only accepts commands from licenced domains. The <a href="http://www.xlabsgaze.com/developer-manual" alt="www.xlabsgaze.com/developer-manual">developer manual</a> can also be found on our website.</p>
+   <p>NOTE: This page update is limited to 10 Hz even when tracking is faster. Your code will be able to access the API at full speed.</p>
+    <form id="config-form" method="" action="" >
+      <label class="controlLabel" for="config-path">Property:</label>
+      <input id="config-path" name="config-path" type="text" value="" /> 
+      <label class="controlLabel" for="config-value">New value:</label>
+      <input id="config-value" name="config-value" type="text" value="" /> 
+      <input id="config-submit" name="config-submit" type="button" value="Apply" />
+    </form>
+    <hr>
+    <pre id="config" style="width:940px;"></pre>
+  </div>
+
+    </div>
+   </li>
+
+   <li class="tabLi">
+    <input type="radio" class="tabRadio" name="tabs" id="tab2">
+    <label class="tabsLabel" for="tab2">Controls</label>
+    <div id="tab-content2" class="tab-content animated fadeIn">
+
+  <div id="commands">
+   <h2>Control Panel</h2>
+   <p>This page gives you full control over this software. If you change the mode to "Off", all image capture and processing is disabled. You can do this at any time. Note that no images are ever transmitted to another computer by our software. We only provide video to your own browser.</p>
+   <img src="extension_button.png" /><br>
+   <p>In most cases, you can control the system by simply visiting xLabs-compatible websites. But you can also control it via the xLabs button in the toolbar (above).</p>
+   <p style="width:30%">
+    <label class="controlLabel" for="calibration-clear">Calibration data</label>
+    <button id="calibration-clear" style="float:right;">Delete</button>
+   </p>
+   <p style="width:30%">
+    <label class="controlLabel" for="persistent-clear">All data</label>
+    <button id="persistent-clear" style="float:right;">Delete</button>
+   </p>
+   <p>Calibration data is learnt for specific users and accumulates over time. Calibration assumes that you are looking while you are clicking. If this isn't true for some reason, you may want to clear your calibration data to improve accuracy.</p>
+   <form name="mode-form" id="mode-form">
+    <label class="controlLabel" >Mode</label>
+   <p>The mode of the system determines how it behaves. Normally, the system is "Off" which will consume very few resources. "Head" and "Page-defined modes are used by third-party websites to provide gaze or head tracking functionality. "Mouse" mode allows you to browse the web using only head movements, without touching your computer. "Learning" mode enables the system to learn to track gaze while watching you surf the web normally. For detailed instructions, see our <a href="http://www.xlabsgaze.com/user-manual" alt="www.xlabsgaze.com/user-manual">user manual</a>.</p>
+   <div>
+    <input type="radio" name="mode" value="off" style="float:left" >Off</input>
+    <div id="mode-info-off" style="font-size:0.8em; width:70%; float:right;">When turned off, the system consumes negligible resources and does not use the camera. Nothing is tracked.</div>
+   </div>
+   <div>
+    <br>
+    <input type="radio" name="mode" value="mouse" >Mouse</input>
+    <div id="mode-info-mouse" style="font-size:0.8em; width:70%; float:right;">Mouse mode allows you to control the pointer within Chrome using head movements.</div>
+   </div>
+   <div>
+    <br>
+    <input type="radio" name="mode" value="head" >Head</input>
+    <div id="mode-info-head" style="font-size:0.8em; width:70%; float:right;">Head tracking mode is used by third-party web pages as an input system.</div>
+   </div>
+   <div>
+    <br>
+    <input type="radio" name="mode" value="learning" style="float:left"  >Learning</input>
+    <div id="mode-info-learning" style="font-size:0.8em; width:70%; float:right;">Learning mode means that the system will learn to calibrate itself continuously from normal web browsing activity (clicks).</div>
+   </div>
+   <div>
+    <br>
+    <input type="radio" name="mode" value="training" style="float:left"  >Page-defined</input>
+    <div id="mode-info-training" style="font-size:0.8em; width:70%; float:right;">Page-defined mode is used by compatible websites. These pages will provide their own interfaces for you to use.</div>
+   </div>
+   </form>
+  </div>
+
+    </div>
+   </li>
+
+   <li class="tabLi">
+    <input type="radio" class="tabRadio" name="tabs" id="tab5">
+    <label class="tabsLabel" for="tab5">Licence</label>
+    <div id="tab-content5" class="tab-content animated fadeIn">
+
+  <div id="licence-div">
+      <h2>Use of Open-Source software</h2>
+      <p>This system makes use of several open-source software components. We do not restrict your rights to use these works under their original licences. We would like to credit and thank the authors for their work. We highly recommend use of these libraries:</p>
+      <ul>
+
+       <li><a href="https://developer.chrome.com/native-client">Google Native Client</a> (for high performance code within the browser)</li>
+       <li><a href="http://www.boost.org/">BOOST C++</a> libraries. (Licence: <a href="http://www.boost.org/users/license.html">Boost Licence</a>)</li>
+       <li><a href="http://opencv.org/">OpenCV</a> C++ libraries. (Licence: <a href="http://www.linfo.org/bsdlicense.html">BSD</a>)</li>
+       <li><a href="http://www.milbo.users.sonic.net/stasm/">STASM 4.1</a> C++ library. (Licence: <a href="http://www.linfo.org/bsdlicense.html">BSD</a>)</li>
+       <li><a href="http://www.csie.ntu.edu.tw/~cjlin/libsvm/">libSVM 3.18</a> C++ library. (<a href="http://www.csie.ntu.edu.tw/~cjlin/libsvm/COPYRIGHT">Licence terms</a>)</li>
+      </ul>
+      <h2>Disclaimer</h2>
+      <p>This software is provided by the copyright holders and contributors "as-is" and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall the regents or contributors be held liable for any directy, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.</p>
+      <h2>End-User License Agreement (EULA)</h2>
+      <p>Your use of this browser extension and software provided by <a href="http://www.xlabsgaze.com" alt="www.xlabsgaze.com" target="new">xLabs Pty Ltd</a> ("xLabs", "us", "our", "we") constitutes an understanding and acceptance of our <a href="http://www.xlabsgaze.com/license" alt="www.xlabsgaze.com/license" target="new">End-User License Agreement (EULA)</a>. If you are entering into this agreement on behalf of a company or other legal entity, you must have the legal authority to represent the entity. The pronouns "you" and "your" represent the individual or entity agreeing to be bound by these terms. If you do not agree with any of the conditions given in our <a href="http://www.xlabsgaze.com/license" alt="www.xlabsgaze.com/license" target="new">End-User License Agreement (EULA)</a>, you must not use this browser extension or any services offered by us. The EULA will be periodically updated to reflect any changes to the service. Your continued use of the service shall constitute consent to these changes.</p>
+   </div>
+
+    </div>
+   </li>
+
+   <li class="tabLi">
+    <input type="radio" class="tabRadio" name="tabs" id="tab6">
+    <label class="tabsLabel" for="tab6">Help</label>
+    <div id="tab-content6" class="tab-content animated fadeIn">
+
+  <div id="licence-div">
+      <h2>Help</h2>
+      <p>Having problems? Please let us know. We are constantly improving this product.</p>
+      <h2>User & Developer Guides</h2>
+      <p>We have several documents that might help you. First, check the <a href="http://www.xlabsgaze.com/user-manual" target="new" alt="xlabs user manual">user guide</a>. The user guide contains troubleshooting tips and explains how to use the interface. More technical and in-depth information is provided in the 
+  <a href="http://www.xlabsgaze.com/developer-manual" target="new" alt="xlabs developer guide">developer guide</a>.</p>
+      <p>Developers may also find the Config tab useful. It displays the inner workings of the Javascript interface to our system.</p>
+      <h2>Environment Tips</h2>
+      <p>One of the most common problems is getting a good picture from the camera. Most webcams have an auto-gain feature that adjusts the brightness of the picture overall. However, the camera doesn't know which bit of the picture is needed - your face! The following images show some do's and don'ts that will help you get a good picture.</p>
+      
+    
+    <div class="cfix">
+    <img src="env_ok_night.png" alt="Good: Bright and diffuse lighting making the face consistently bright and clear" class="img-align-right"/>
+      <h3><em>Do:</em> Find a place with bright overhead lighting</h3>
+    <p>The best environment is when light evenly and diffusely illuminates the whole room.</p>
+    </div>
+    
+    <div class="cfix">
+    <img src="env_ok_day.png" alt="Good: Sunlight evenly and brightly illuminating the face" class="img-align-right"/>
+      <h3><em>Do:</em> Face towards windows and other bright areas during the day.</h3>
+    <p> The face should ideally be brighter than the background, rather than the other way around.</p>
+    </div>
+    
+    <div class="cfix">
+    <img src="env_bad_back.png" alt="Problem: face too dark because background too bright" class="img-align-right"/>
+    <h3><em>Don't:</em> Sit with a bright light source behind your head. Features on the face can't be seen.</h3>
+    </div>
+    
+    <div class="cfix">
+    <img src="env_bad_dark.png" alt="Problem: environment too dark" class="img-align-right"/>
+    <h3><em>Don't:</em> Use the system in a dark room. </h3>
+    </div>
+    
+    <div class="cfix">
+    <img src="env_bad_side.png" alt="Problem: strong side or spotlighting makes parts of face too dark" class="img-align-right"/>
+      <h3><em>Don't:</em> Use directional lights to light up part of the face</h3>
+    <p>Shadows make it hard for the system to identify facial features.</p>
+    </div>
+   
+    
+      <h2>Online</h2>
+      <p>Lots of additional info is provided on our website, <a href="http://www.xlabsgaze.com" alt="www.xlabsgaze.com">www.xlabsgaze.com</a>.</p>
+      <h2>Email</h2>
+      <p>You are very welcome to email us at <a href="mailto:talk@xlabsgaze.com" alt="email talk@xlabsgaze.com">talk@xlabsgaze.com</a>. We will try to answer your questions as quickly as possible.</p>
+     </div>
+
+    </div>
+   </li>
+
+  </ul>
+
+
+  <script src="variables.js"></script>
+  <script src="allow_camera.js"></script>
+  <script src="util.js"></script>
+  <script src="camera.js"></script>
+  <script src="camera_config.js"></script>
+  <script src="options.js"></script>
+
+ </body>
+</html>
