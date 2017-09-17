@@ -395,7 +395,14 @@ var xLabsMouse = {
       xLabsMouse.dwellStartTime = 0;
     }
   },
-
+  paintPendingForward : function() {
+    // a red bar at left
+    var w = xLabsContent.canvas.height * 0.1;
+    var h = xLabsContent.canvas.height;
+    var z = xLabsContent.canvas.width;
+    xLabsContent.canvasContext.fillStyle = "rgba( 255, 0, 0, 0.3 )";
+    xLabsContent.canvasContext.fillRect( z-w ,0, w, h ); 
+  },
   paintPendingBack : function() {
     // a red bar at left
     var w = xLabsContent.canvas.height * 0.1;
