@@ -110,9 +110,25 @@ var xLabsCamera = {
         if (xhr.readyState === DONE) {
           if (xhr.status === OK) {
             var data = JSON.parse(xhr.responseText);
-            if (data){
+            if (data && data[0] && data[0]['faceAttributes'] && data[0]['faceAttributes']['emotion']){
               var emotion = data[0]['faceAttributes']['emotion'];
-              console.log(emotion)
+
+              var reaction = 'neutral'
+              var reaction_score = emotion['neutral']
+
+              for(var emotion_key in emotion) {
+                if(emotion_key === 'contempt' || emotion_key === 'contempt') {
+                  continue;
+                }
+                if (dictionary.hasOwnProperty(emotion_key)) {
+                  if(dictionary[emotion_key] > reaction_score) {
+                    reaction = emotion_key
+                    reaction_score = dictionary[emotion_key]
+                  }
+                }
+              }
+
+              document.documentElement.setAttribute('reaction', reaction)
             }
           } else {
             console.log(xhr.responseText);
