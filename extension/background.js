@@ -212,9 +212,6 @@ var xLabsBackground = {
         console.error( "onExtensionMessage(): invalid request.action: " + request.action );
       }
     }
-    else if( request.analytics ) {
-      xLabsBackground.sendAnalytics( request.analytics.event, request.analytics.action )
-    }
   },
 
   onModuleStop : function() {
@@ -503,8 +500,6 @@ var xLabsBackground = {
     // sends a message and background.js will reload the extension.
     xLabsBackground.postMessage( { type: "reloadExtension" } );
 
-    xLabsBackground.sendAnalytics( "camera_resolution", "changed" );
-    // _gaq.push(['_trackEvent', "camera_resolution", 'changed']);
   },
 
   onModuleCrash : function() {
@@ -523,7 +518,6 @@ var xLabsBackground = {
 
       // The user saw the alert and closed it. So we know the crash wasn't during
       // shutdown/sleep/hibernate.
-      xLabsBackground.sendAnalytics( "user_confirmed_crash", "nacl_backend", crashProp );
     }
     chrome.browserAction.onClicked.addListener(function(){
       message();
@@ -536,7 +530,6 @@ var xLabsBackground = {
     });
 
     // Send analytices before the user action of clicking the dismiss button.
-    xLabsBackground.sendAnalytics( "crash", "nacl_backend", crashProp );
 
     // Show the message that user MUST responde to so we know it's an error that
     // only occurs on shutdown or sleep.
@@ -571,19 +564,6 @@ var xLabsBackground = {
     }
   },
 
-  sendAnalytics : function( event, action, properties ) {
-    // _gaq.push(['_trackEvent', event, action]);
-    if( typeof(properties) == "undefined" ) {
-      properties = {}
-    }
-    properties.short_name = chrome.runtime.getManifest().short_name;
-    mixpanel.track( event + "_" + action, properties );
-  },
-
-  sendAnalyticsTrackPageView : function( page_name ) {
-    // _gaq.push(['_trackPageview']);
-    mixpanel.track( "page_view_" + page_name );
-  },
 
   setup : function() {
     document.getElementById( 'realtime' ).addEventListener( 'load', xLabsBackground.onModuleLoad, true );  
@@ -599,8 +579,6 @@ var xLabsBackground = {
         38: xLabsVariables.ICON_FILE_38_OFF
       }
     });
-
-    xLabsBackground.sendAnalyticsTrackPageView( "background" )
   }
 };
 

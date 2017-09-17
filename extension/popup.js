@@ -2,9 +2,6 @@
 var xLabsPopup = {
   ready : false,
 
-  sendAnalytics : function( event, action ) {
-    chrome.extension.getBackgroundPage().xLabsBackground.sendAnalytics( event, action );
-  },
 
   onModeChanged : function() {
     // get mode
@@ -13,9 +10,7 @@ var xLabsPopup = {
     for( i = 0; i < modeForm.mode.length; i++ )
     {
       if( modeForm.mode[ i ].checked ) {
-        mode = modeForm.mode[ i ].value; //male or female
-        xLabsPopup.sendAnalytics( "mode_"+mode, "clicked" );
-        // _gaq.push(['_trackEvent', "mode_"+mode, 'clicked']); // track ID of any button push        
+        mode = modeForm.mode[ i ].value; //male or female       
         break;
       }
     }
@@ -149,8 +144,6 @@ var xLabsPopup = {
             break;
         }
 
-        xLabsPopup.sendAnalytics( e.target.id, "clicked" );
-        // _gaq.push(['_trackEvent', e.target.id, 'clicked']); // track ID of any button push
 
       } ); // event listener
     } ); // call

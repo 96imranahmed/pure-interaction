@@ -1,5 +1,5 @@
 
-chrome.extension.getBackgroundPage().xLabsBackground.sendAnalyticsTrackPageView( "options" )
+
 
 var xLabsOptions = {
 
