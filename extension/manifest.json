@@ -5,10 +5,7 @@
    },
    "browser_action": {
       "default_icon": {
-         "128": "x_128.png",
-         "16": "x_16.png",
-         "19": "x_19.png",
-         "38": "x_38.png"
+         "128": "img_off.png"
       },
       "default_popup": "popup.html",
       "default_title": "Emotion"
@@ -23,10 +20,7 @@
    } ],
    "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
    "icons": {
-      "128": "x_128.png",
-      "16": "x_16.png",
-      "19": "x_19.png",
-      "38": "x_38.png"
+      "128": "img_off.png"
    },
    "incognito": "split",
    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqJ1RvqFmimmH26wJk653bxH9AkSPhJS3FIhX3PD+kKTlcFYl6UT6V5q6WFHx58R2Z8L/JzGS0xssiIRiInQDlzitm/FnynnxvUyYo3y36C9VJiCQAGD9Lxn0S9LHwTtQ8iHTslR/zYCU+4woqNRGJwD25EDtAufHZrH10D+eThIPmyD2l1tLhUkKARYstTTRdmjsAOfdX2Vk8J8B46334NJ9KY6Lp93IQHJCJa6sfDBcNz1JPBEghowBJQAz3yUg04QcHIE22Y2RYiQCEIJefX4apZNoJtrEI0+alpA/I8Q6yzF3P0HlVqws2ZTUvBJof40jbvZjROJj7rgBqWuvGQIDAQAB",

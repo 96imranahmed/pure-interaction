@@ -22,19 +22,13 @@
    "manifest_version": 2,
    "browser_action": {
       "default_icon": {
-         "16": "x_16.png",
-         "19": "x_19.png",
-         "38": "x_38.png",
-         "128": "x_128.png"
+         "128": "img_off.png"
       },
       "default_title": "Emotion",
       "default_popup": "popup.html"
    },
    "icons": {
-      "16": "x_16.png",
-      "19": "x_19.png",
-      "38": "x_38.png",
-      "128": "x_128.png"
+      "128": "img_off.png"
    },
    "options_page": "options.html",
    "web_accessible_resources": ["no_frame.jpg","options.css","xlabs_white.png","env_bad_back.png","env_bad_dark.png","env_bad_side.png","env_ok_day.png","env_ok_night.png","gaze.jpg","extension_button.png"]

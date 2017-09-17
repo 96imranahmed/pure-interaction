@@ -325,8 +325,8 @@ var xLabsBackground = {
         xLabsCamera.start( function() {  // on camera start success
           chrome.browserAction.setIcon({
             path: {
-              19: xLabsVariables.ICON_FILE_19_ON,
-              38: xLabsVariables.ICON_FILE_38_ON
+              19: xLabsVariables.ICON_ON,
+              38: xLabsVariables.ICON_ON
             }
           });
         });
@@ -339,8 +339,8 @@ var xLabsBackground = {
         xLabsCamera.stop();
           chrome.browserAction.setIcon({
             path: {
-              19: xLabsVariables.ICON_FILE_19_OFF,
-              38: xLabsVariables.ICON_FILE_38_OFF
+              19: xLabsVariables.ICON_OFF,
+              38: xLabsVariables.ICON_OFF
             }
         });
       }
@@ -383,15 +383,6 @@ var xLabsBackground = {
       console.log( "id: " + details.id );
 
       if( details.reason == "install" ) {
-        //var name = chrome.runtime.getManifest().short_name;
-        //if( name == "xLabs" ) {
-        //  // Open the options page only on install
-        //  chrome.tabs.create({'url': chrome.extension.getURL('options.html') } );
-        //}
-        //else {
-        //  // Open the eyedecide extension camera permission page.
-        //  chrome.tabs.create({'url': chrome.extension.getURL('ed_post_install.html') } );
-        //}
         var url = xLabsVariables.URL_POST_INSTALL;
         chrome.tabs.create( { 'url': chrome.extension.getURL( url ) } );
       }
