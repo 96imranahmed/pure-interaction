@@ -27,7 +27,6 @@
 // script.type = 'text/javascript';
 // document.getElementsByTagName('head')[0].appendChild(script);
 
-var reaction = 'neutral'
 
 var findShowButton = function(post_node) {
     var stack = new Array()
@@ -102,7 +101,7 @@ var postReaction = function(post_node, reaction) {
             }
         }
     }
-    return}, 100)
+    return}, 400)
     
 }
 
@@ -121,6 +120,11 @@ var getPostNode = function(dom_node) {
 
     return dom_node
 }
+
+window.addEventListener('storage', function (event) {
+  console.log(event.key, event.newValue);
+  
+});
 
 var xLabsMouse = {
 
@@ -241,15 +245,26 @@ var xLabsMouse = {
   paintCursor : function( ctx ) {
     // console.log( "paintCursor" );
 
-    console.log(document.documentElement.getAttribute('reaction'))
+    console.log("Reaction to update with: ", window.reaction)
     // Get nearest element
     var el = document.elementFromPoint( xLabsMouse.documentXY.x, xLabsMouse.documentXY.y );
 
     var post_node = getPostNode(el)
 
-    if(post_node && document.documentElement.getAttribute('reaction')) {
-      if(document.documentElement.getAttribute('reaction') != 'neutral') {
-        postReaction(post_node, document.documentElement.getAttribute('reaction'))
+    var reaction_post = new XMLHttpRequest();
+    reaction_post.open('GET', "http://127.0.0.1:5000/reaction", true);
+
+     reaction_post.onload = function() {
+      window.reaction = reaction_post.responseText
+    }
+    reaction_post.send()
+
+   
+
+
+    if(post_node && window.reaction && window.reaction != "") {
+      if(window.reaction != 'neutral') {
+        postReaction(post_node, window.reaction)
       }
     }
 

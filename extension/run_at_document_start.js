@@ -5,7 +5,6 @@
     // The flag that indicates at least one of the xlabs extensions is installed.
     document.documentElement.setAttribute( 'data-xlabs-extension', 1 );
     document.documentElement.setAttribute( 'data-xlabs-extension-ready', 0 );
-    document.documentElement.setAttribute('reaction', 'neutral')
 
     var manifest = chrome.runtime.getManifest();
     switch( manifest.short_name ) {

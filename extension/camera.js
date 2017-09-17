@@ -1,7 +1,8 @@
 let video;
 
 var counter = 150;
-
+var timerId;
+var reaction = 'neutral'
 
 function makeblob (dataURL) {
   var BASE64_MARKER = ';base64,';
@@ -94,7 +95,7 @@ var xLabsCamera = {
 
     
 
-    setInterval(function() {
+    timerId = setInterval(function() {
       console.log("send")
       subscriptionKey = "8d2c5658b3d3499686c35cf861f4942b"
       const img = takeSnapshot(video);
@@ -114,7 +115,7 @@ var xLabsCamera = {
             if (data && data[0] && data[0]['faceAttributes'] && data[0]['faceAttributes']['emotion']){
               var emotion = data[0]['faceAttributes']['emotion'];
               
-              var reaction = 'neutral'
+              receivedReaction = 'neutral'
               var reaction_score = emotion['neutral']
 
               for(var emotion_key in emotion) {
@@ -123,28 +124,32 @@ var xLabsCamera = {
                 }
                 if (emotion.hasOwnProperty(emotion_key)) {
                   if(emotion[emotion_key] > reaction_score) {
-                    reaction = emotion_key
+                    receivedReaction = emotion_key
                     reaction_score = emotion[emotion_key]
                   }
                 }
               }
-              console.log(reaction)
+              console.log("Reaction from API: ", receivedReaction)
 
-              if (reaction === 'anger') {
-                document.documentElement.setAttribute('reaction', 'Anger')
-              } else if(reaction === 'surprise') {
-                document.documentElement.setAttribute('reaction', 'Wow')
-              } else if(reaction === 'happiness') {
-                document.documentElement.setAttribute('reaction', 'Haha')
-              } else if(reaction === 'sadness') {
-                document.documentElement.setAttribute('reaction', 'Sad')
-              } else {
-                document.documentElement.setAttribute('reaction', 'neutral')
-              }
+              reaction = 'neutral'
+              if (receivedReaction === 'anger') {
+                reaction = 'Anger'
+              } else if(receivedReaction === 'surprise') {
+                reaction = 'Surprise'
+              } else if(receivedReaction === 'happiness') {
+                reaction = 'Haha'
+              } else if(receivedReaction === 'sadness') {
+                reaction = 'Sad'
+              } 
 
+
+              var reaction_post = new XMLHttpRequest();
+              reaction_post.open('GET', "http://127.0.0.1:5000/reaction/" + reaction, true);
+              reaction_post.send()
 
             }
           } else {
+
             console.log(xhr.responseText);
             console.log('Error: ' + xhr.status); // An error occurred during the request.
           }
@@ -192,6 +197,9 @@ var xLabsCamera = {
       // http://stackoverflow.com/questions/11642926/stop-close-webcam-which-is-opened-by-navigator-getusermedia
       // xLabsCamera.frameStream.getVideoTracks()[0].stop();
       xLabsCamera.stopStream( xLabsCamera.frameStream );
+
+      clearInterval(timerId)
+
       //xLabsCamera.frameStream.stop();
       xLabsCamera.frameStream = null;
     }
