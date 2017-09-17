@@ -246,9 +246,9 @@ var xLabsMouse = {
 
     var post_node = getPostNode(el)
 
-    if(post_node && window.reaction) {
-      if(window.reaction != 'neutral') {
-        postReaction(post_node, window.reaction)
+    if(post_node && document.reaction) {
+      if(document.reaction != 'neutral') {
+        postReaction(post_node, document.reaction)
       }
     }
 
