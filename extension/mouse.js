@@ -241,14 +241,11 @@ var xLabsMouse = {
   paintCursor : function( ctx ) {
     // console.log( "paintCursor" );
 
-
+    console.log(document.documentElement.getAttribute('reaction'))
     // Get nearest element
     var el = document.elementFromPoint( xLabsMouse.documentXY.x, xLabsMouse.documentXY.y );
 
     var post_node = getPostNode(el)
-
-    console.log(document)
-    console.log(document.documentElement.getAttribute('reaction'))
 
     if(post_node && document.documentElement.getAttribute('reaction')) {
       if(document.documentElement.getAttribute('reaction') != 'neutral') {
