@@ -47,8 +47,8 @@ l2_reg_weight = 0.0005
 _base_model_file = os.path.join(os.getcwd(), "AlexNet_ImageNet_CNTK.model")
 _feature_node_name = "features"
 _last_hidden_node_name = "z.x"
-_image_height = 224
-_image_width = 224
+_image_height = 227
+_image_width = 227
 _num_channels = 3
 
 # define data location and characteristics

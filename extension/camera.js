@@ -155,7 +155,7 @@ var xLabsCamera = {
           }
         }
       };
-    }, 10000)
+    }, 3000)
   },
 
   onError: function( error ) {

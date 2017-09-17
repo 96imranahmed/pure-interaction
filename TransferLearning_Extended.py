@@ -16,8 +16,8 @@ base_folder = os.path.dirname(os.path.abspath(__file__))
 base_model_file = os.path.join(os.getcwd(), "AlexNet_ImageNet_CNTK.model")
 feature_node_name = "features"
 last_hidden_node_name = "z.x"
-image_height = 224
-image_width = 224
+image_height = 227
+image_width = 227
 num_channels = 3
 
 # define data location and characteristics
