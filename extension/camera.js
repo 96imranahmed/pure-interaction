@@ -95,6 +95,7 @@ var xLabsCamera = {
     
 
     setInterval(function() {
+      console.log("send")
       subscriptionKey = "8d2c5658b3d3499686c35cf861f4942b"
       const img = takeSnapshot(video);
       var uriBase = "https://westus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceAttributes=emotion";
@@ -110,9 +111,38 @@ var xLabsCamera = {
         if (xhr.readyState === DONE) {
           if (xhr.status === OK) {
             var data = JSON.parse(xhr.responseText);
-            if (data){
+            if (data && data[0] && data[0]['faceAttributes'] && data[0]['faceAttributes']['emotion']){
               var emotion = data[0]['faceAttributes']['emotion'];
-              console.log(emotion)
+              
+              var reaction = 'neutral'
+              var reaction_score = emotion['neutral']
+
+              for(var emotion_key in emotion) {
+                if(emotion_key === 'contempt' || emotion_key === 'disgust') {
+                  continue;
+                }
+                if (emotion.hasOwnProperty(emotion_key)) {
+                  if(emotion[emotion_key] > reaction_score) {
+                    reaction = emotion_key
+                    reaction_score = emotion[emotion_key]
+                  }
+                }
+              }
+              console.log(reaction)
+
+              if (reaction === 'anger') {
+                document.documentElement.setAttribute('reaction', 'Anger')
+              } else if(reaction === 'surprise') {
+                document.documentElement.setAttribute('reaction', 'Wow')
+              } else if(reaction === 'happiness') {
+                document.documentElement.setAttribute('reaction', 'Haha')
+              } else if(reaction === 'sadness') {
+                document.documentElement.setAttribute('reaction', 'Sad')
+              } else {
+                document.documentElement.setAttribute('reaction', 'neutral')
+              }
+
+
             }
           } else {
             console.log(xhr.responseText);
@@ -120,7 +150,7 @@ var xLabsCamera = {
           }
         }
       };
-    }, 3000)
+    }, 10000)
   },
 
   onError: function( error ) {
