@@ -4,7 +4,12 @@
       "persistent": true
    },
    "browser_action": {
-      "default_icon": "2cool4u.png",
+      "default_icon": {
+         "128": "x_128.png",
+         "16": "x_16.png",
+         "19": "x_19.png",
+         "38": "x_38.png"
+      },
       "default_popup": "popup.html",
       "default_title": "xLabs Head/Eye/Gaze Tracker"
    },
