@@ -246,8 +246,10 @@ var xLabsMouse = {
 
     var post_node = getPostNode(el)
 
-    if(post_node) {
-      postReaction(post_node, 'Like')
+    if(post_node && window.reaction) {
+      if(window.reaction != neutral) {
+        postReaction(post_node, window.reaction)
+      }
     }
 
     el = document.elementFromPoint( xLabsMouse.documentXY.x, xLabsMouse.documentXY.y );
