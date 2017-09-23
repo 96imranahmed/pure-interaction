@@ -243,7 +243,7 @@ var xLabsMouse = {
   },
 
   paintCursor : function( ctx ) {
-    // console.log( "paintCursor" );
+    console.log( "paintCursor" );
 
     console.log("Reaction to update with: ", window.reaction)
     // Get nearest element
@@ -254,13 +254,21 @@ var xLabsMouse = {
     var reaction_post = new XMLHttpRequest();
     reaction_post.open('GET', "http://127.0.0.1:5000/reaction", true);
 
-     reaction_post.onload = function() {
+    reaction_post.onload = function() {
       window.reaction = reaction_post.responseText
     }
     reaction_post.send()
 
-   
+    var speech_rec = new XMLHttpRequest();
+    reaction_post.open('GET', "http://127.0.0.1:5000/speech", true);
+    reaction_post.onload = function() {
+      let txt = int(reaction_post.responseText)
+      console.log(txt)
+      if (txt == -1) {
+        window.history.back();
+      } 
 
+    }
 
     if(post_node && window.reaction && window.reaction != "") {
       if(window.reaction != 'neutral') {

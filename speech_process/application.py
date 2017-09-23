@@ -14,16 +14,12 @@ def reac():
 	global reaction
 	reaction_copy = str(reaction)
 	reaction = ""
-	print("HELLO WE AERASDFADF")
-	print(reaction_copy)
 	return reaction_copy
 
 @app.route("/reaction/<query>")
 def reac_update(query):
 	global reaction
 	reaction = query
-	if(reaction == 'Haha'):
-		print('WE HAD A HAHAHAHAHAHAH')
 	return str(reaction)
 
 if __name__ == '__main__':
